@@ -3,21 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#65351F">
+<meta name="theme-color" content="#582770">
 
-<!-- SEGURANÇA E PRIVACIDADE
-     A CSP abaixo não precisa de 'unsafe-inline' porque o CSS e o JS estão em arquivos próprios.
-     Observação: X-Content-Type-Options e frame-ancestors só funcionam como cabeçalho HTTP
-     (ex.: arquivo _headers no Netlify/Cloudflare Pages), não por <meta>. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
 
-<title>Aline Joias | Catálogo Exclusivo</title>
-<meta name="description" content="Catálogo de joias exclusivas da Aline Joias: conjuntos, colares e pulseiras selecionados com cuidado. Consulte disponibilidade e valores pelo WhatsApp.">
+<title>Aline Moda | Catálogo Exclusivo</title>
+<meta name="description" content="Catálogo exclusivo de roupas e tendências: peças selecionadas com cuidado e elegância. Consulte tamanhos e valores pelo WhatsApp.">
 
 <link rel="icon" type="image/png" href="image/logo.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 </head>
@@ -27,8 +23,8 @@
 <!-- CABEÇALHO -->
 <header>
   <div class="logo-wrap">
-    <span class="brand-tag">Ateliê de Joias Exclusivas</span>
-    <div class="logo">ALINE JOIAS</div>
+    <span class="brand-tag">Moda & Estilo Exclusivo</span>
+    <div class="logo">ALINE MODA</div>
   </div>
 
   <nav aria-label="Principal">
@@ -38,27 +34,27 @@
   </nav>
 </header>
 
-<!-- BARRA DE BENEFÍCIOS (carrossel contínuo: 4 conjuntos idênticos, só o primeiro é lido por leitores de tela) -->
+<!-- BARRA DE BENEFÍCIOS -->
 <div class="benefits-bar">
   <div class="benefits-container">
     <div class="benefits-set">
-      <span>✦ Curadoria e Exclusividade</span>
-      <span>✦ Brilho e Durabilidade Garantidos</span>
+      <span>✦ Tendências Exclusivas</span>
+      <span>✦ Caimento Perfeito e Conforto</span>
       <span>✦ Atendimento Personalizado</span>
     </div>
     <div class="benefits-set" aria-hidden="true">
-      <span>✦ Curadoria e Exclusividade</span>
-      <span>✦ Brilho e Durabilidade Garantidos</span>
+      <span>✦ Tendências Exclusivas</span>
+      <span>✦ Caimento Perfeito e Conforto</span>
       <span>✦ Atendimento Personalizado</span>
     </div>
     <div class="benefits-set" aria-hidden="true">
-      <span>✦ Curadoria e Exclusividade</span>
-      <span>✦ Brilho e Durabilidade Garantidos</span>
+      <span>✦ Tendências Exclusivas</span>
+      <span>✦ Caimento Perfeito e Conforto</span>
       <span>✦ Atendimento Personalizado</span>
     </div>
     <div class="benefits-set" aria-hidden="true">
-      <span>✦ Curadoria e Exclusividade</span>
-      <span>✦ Brilho e Durabilidade Garantidos</span>
+      <span>✦ Tendências Exclusivas</span>
+      <span>✦ Caimento Perfeito e Conforto</span>
       <span>✦ Atendimento Personalizado</span>
     </div>
   </div>
@@ -69,32 +65,32 @@
   <!-- CAPA -->
   <section class="hero" id="inicio">
     <div class="hero-content">
-      <small>Joias que contam histórias</small>
-      <h1>A beleza está nos detalhes.</h1>
+      <small>Elegância em cada costura</small>
+      <h1>Vista sua melhor versão.</h1>
       <p>
-        Descubra uma seleção especial de joias pensadas para valorizar sua essência,
-        elegância e personalidade com todo o cuidado e afeto.
+        Descubra coleções pensadas para realçar sua autenticidade, unindo
+        conforto, sofisticação e as principais tendências da moda.
       </p>
-      <a href="#colecao" class="btn">Conheça as peças</a>
+      <a href="#colecao" class="btn">Conheça o Catálogo</a>
     </div>
   </section>
 
-  <!-- COLEÇÃO DE JOIAS COM BUSCA E FILTROS -->
+  <!-- COLEÇÃO DE ROUPAS COM BUSCA E FILTROS -->
   <section id="colecao">
     <div class="section-title">
-      <span>Seleção especial</span>
-      <h2>Coleção em Destaque</h2>
-      <p>Toque na foto ou no nome de uma peça para ver o resumo completo e conversar sobre ela.</p>
+      <span>Novas Coleções</span>
+      <h2>Peças em Destaque</h2>
+      <p>Toque na foto ou no nome de uma peça para ver os detalhes, tamanhos disponíveis e consultar no WhatsApp.</p>
     </div>
 
     <div class="filter-bar">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Pesquisar joia..." maxlength="60" aria-label="Pesquisar joia">
+        <input type="text" id="searchInput" placeholder="Pesquisar peça..." maxlength="60" aria-label="Pesquisar peça">
       </div>
 
       <div class="filter-dropdown-wrap">
         <button type="button" class="btn-filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="categoryFilters">
-          Filtrar Coleção <span id="filterArrow" aria-hidden="true">▾</span>
+          Filtrar Categorias <span id="filterArrow" aria-hidden="true">▾</span>
         </button>
         <div class="category-filters" id="categoryFilters"></div>
       </div>
@@ -103,7 +99,7 @@
     <div class="products" id="productsGrid"></div>
   </section>
 
-  <!-- MODAL DE RESUMO DA JOIA -->
+  <!-- MODAL DE RESUMO DA PEÇA -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button type="button" class="modal-close" id="modalClose" aria-label="Fechar janela">&times;</button>
@@ -116,7 +112,7 @@
         <p class="modal-tagline" id="modalTagline"></p>
         <p class="modal-desc" id="modalDesc"></p>
         <a id="modalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-cta">
-          <img src="image/whatsapp.png" alt="" class="icon-whatsapp"> Consultar no WhatsApp
+          <img src="image/whatsapp.png" alt="" class="icon-whatsapp"> Consultar Tamanhos no WhatsApp
         </a>
       </div>
     </div>
@@ -131,19 +127,18 @@
       loading="lazy"
     >
     <div>
-      <span>Essência e Delicadeza</span>
+      <span>Moda com Propósito</span>
       <h2>Olá, sou a Aline Borges</h2>
       <p>
-        Cada peça que você encontra por aqui carrega uma intenção: celebrar momentos,
-        realçar a sua beleza natural e contar histórias através do brilho.
+        Acredito que a roupa certa tem o poder de transformar como nos sentimos. Cada peça do nosso catálogo é escolhida a dedo para trazer versatilidade, elegância e muito estilo para o seu dia a dia.
         <br><br>
-        Seleciono cada detalhe pensando em transformar o cotidiano em algo extraordinário e cheio de afeto. Será um prazer fazer parte da sua história!
+        Será um prazer ajudar você a montar produções incríveis!
       </p>
       <div class="social-actions">
-        <a href="https://www.instagram.com/aline_a_borges_" target="_blank" rel="noopener noreferrer" class="btn secondary">
-          <img src="image/instagram.png" alt="" class="icon-instagram"> Perfil Particular da Aline
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn secondary">
+          <img src="image/instagram.png" alt="" class="icon-instagram"> Instagram Pessoal
         </a>
-        <a href="https://www.instagram.com/alineborges_acessoriosdeluxo" target="_blank" rel="noopener noreferrer" class="btn">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn">
           <img src="image/instagram.png" alt="" class="icon-instagram"> Instagram da Loja
         </a>
       </div>
@@ -153,19 +148,19 @@
   <!-- CONFIABILIDADE E TRAJETÓRIA -->
   <section class="trust-section">
     <div class="trust-container">
-      <span>Tradição e Excelência</span>
-      <h2>Anos de Experiência e Confiança no Mercado</h2>
+      <span>Compromisso e Qualidade</span>
+      <h2>Excelência em Cada Detalhe</h2>
       <p>
-        A <strong>Aline Joias</strong> consolidou sua trajetória através do compromisso inegociável com a qualidade, autenticidade e o atendimento humanizado. Cada peça passa por um rigoroso processo de seleção para garantir que você receba não apenas um acessório, mas um símbolo duradouro de afeto e bom gosto.
+        Trabalhamos com tecidos selecionados e um rigoroso padrão de acabamento para garantir que cada look ofereça durabilidade, caimento impecável e muito conforto.
       </p>
       <div class="trust-badges">
         <div class="trust-badge-item">
-          <h4>Seleção Rigorosa</h4>
-          <p>Padrão elevado de acabamento e durabilidade em todas as coleções.</p>
+          <h4>Tecidos Selecionados</h4>
+          <p>Toque suave, alta durabilidade e caimento perfeito no corpo.</p>
         </div>
         <div class="trust-badge-item">
-          <h4>Atendimento Único</h4>
-          <p>Suporte dedicado e consultoria personalizada para cada cliente.</p>
+          <h4>Atendimento Consultivo</h4>
+          <p>Auxílio completo na escolha de tamanhos, numerações e combinações.</p>
         </div>
       </div>
     </div>
@@ -173,20 +168,20 @@
 
   <!-- BANNER DE NOVIDADES -->
   <div class="newsletter-banner">
-    <h3>Quer nos acompanhar nas redes sociais e receber todas as nossas novidades?</h3>
-    <p>Fique por dentro dos lançamentos exclusivos, bastidores e coleções limitadas.</p>
-    <a href="https://www.instagram.com/alineborges_acessoriosdeluxo" target="_blank" rel="noopener noreferrer" class="btn">
-      <img src="image/instagram.png" alt="" class="icon-instagram"> Instagram da Loja
+    <h3>Quer receber as novidades e lançamentos em primeira mão?</h3>
+    <p>Fique por dentro das coleções limitadas e reposições de estoque pelo nosso Instagram.</p>
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn">
+      <img src="image/instagram.png" alt="" class="icon-instagram"> Seguir no Instagram
     </a>
   </div>
-</main>
+</main> 
 
 <!-- RODAPÉ -->
 <footer>
-  <div class="logo">ALINE JOIAS</div>
-  <p>© <span id="ano">2026</span> Aline Joias · Feito com cuidado e exclusividade.</p>
+  <div class="logo">ALINE MODA</div>
+  <p>© <span id="ano">2026</span> Aline Moda · Feito com cuidado e exclusividade.</p>
   <p class="privacy-note">
-    Privacidade &amp; Segurança (LGPD): este catálogo digital não coleta dados pessoais, não armazena informações financeiras e não utiliza cookies de rastreamento próprios. Fontes e algumas imagens são carregadas de serviços externos (Google Fonts e Unsplash). Todo atendimento é realizado diretamente pelos canais oficiais verificados.
+    Privacidade &amp; Segurança (LGPD): este catálogo digital não coleta dados pessoais, não armazena informações financeiras e não utiliza cookies de rastreamento próprios. Todo atendimento é realizado diretamente pelos canais oficiais verificados.
   </p>
 </footer>
 

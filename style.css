@@ -1,14 +1,16 @@
 /* ==========================================================
-   ALINE JOIAS · Estilos
+   CATÁLOGO DE ROUPAS · Estilos Modernos
    ========================================================== */
 
 :root {
-  --cafe: #65351F;
-  --branco: #FFFFFF;
-  --offwhite: #F7F2E8;
-  --dourado: #C99B46;
-  --dourado-claro: #E8D5AE;
-  --chumbo: #2A2928;
+  /* Regra 60-30-10 para o Catálogo de Roupas */
+  --cor-principal: #fac4c8;   /* 60% - Fundo e áreas gerais (Rosa Claro) */
+  --cor-secundaria: #582770;  /* 30% - Textos, títulos e rodapé (Roxo) */
+  --cor-destaque: #c08de5;    /* 10% - Botões e elementos interativos (Lilás) */
+  
+  --branco: #ffffff;
+  --cinza-claro: #fcf8f8;
+  --borda-roxa: rgba(88, 39, 112, 0.15);
 }
 
 /* ---------- BASE ---------- */
@@ -20,21 +22,19 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 120px; /* evita o cabeçalho fixo cobrir o título da seção */
+  scroll-padding-top: 100px;
 }
 
 body {
-  background: var(--branco);
-  color: var(--chumbo);
+  background-color: var(--cor-principal);
+  color: var(--cor-secundaria);
   font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
 }
 
 body.no-scroll {
-  overflow: hidden; /* trava a rolagem com o modal aberto */
+  overflow: hidden;
 }
 
 a {
@@ -42,86 +42,88 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--dourado);
+  outline: 2px solid var(--cor-destaque);
   outline-offset: 3px;
+}
+
+/* Tipografia moderna unificada para títulos e textos */
+h1, h2, h3, h4, .logo, .brand-tag {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* ---------- CABEÇALHO ---------- */
 header {
   background: var(--branco);
-  border-bottom: 1px solid var(--dourado-claro);
-  padding: 20px 8%;
+  border-bottom: 1px solid var(--borda-roxa);
+  padding: 18px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 20px rgba(88, 39, 112, 0.04);
 }
 
 .logo-wrap {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centraliza a logo sob a tag */
+  align-items: flex-start;
 }
 
 .brand-tag {
-  font-size: 10px;
+  font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  padding-left: 3px; /* compensa o espaço que o letter-spacing deixa após a última letra */
-  color: var(--dourado);
+  color: var(--cor-secundaria);
   font-weight: 600;
+  opacity: 0.75;
 }
 
 .logo {
-  color: var(--cafe);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  letter-spacing: 3px;
-  padding-left: 3px; /* mesma compensação */
-  font-weight: 600;
+  color: var(--cor-secundaria);
+  font-size: 26px;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 nav {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   align-items: center;
 }
 
 nav a {
-  color: var(--cafe);
+  color: var(--cor-secundaria);
   text-decoration: none;
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
 }
 
 nav a:hover {
-  color: var(--dourado);
+  color: var(--cor-destaque);
 }
 
-/* ---------- BARRA DE BENEFÍCIOS (carrossel contínuo) ---------- */
+/* ---------- BARRA DE BENEFÍCIOS ---------- */
 .benefits-bar {
-  background: var(--offwhite);
-  border-bottom: 1px solid var(--dourado-claro);
+  background: var(--branco);
+  border-bottom: 1px solid var(--borda-roxa);
   padding: 12px 0;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
 }
 
-/* 4 conjuntos idênticos: o movimento de -25% equivale a 1 conjunto, sem "saltos" */
 .benefits-container {
   display: inline-flex;
   align-items: center;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--cafe);
+  color: var(--cor-secundaria);
   font-weight: 600;
   animation: scrollBenefits 25s linear infinite;
   will-change: transform;
@@ -141,12 +143,12 @@ nav a:hover {
   100% { transform: translateX(-25%); }
 }
 
-/* ---------- CAPA ---------- */
+/* ---------- CAPA (HERO) ---------- */
 .hero {
-  min-height: 560px;
+  min-height: 520px;
   background:
-    linear-gradient(rgba(42, 41, 40, .45), rgba(42, 41, 40, .45)),
-    url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1800')
+    linear-gradient(rgba(88, 39, 112, .6), rgba(88, 39, 112, .75)),
+    url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1800')
     center/cover;
   display: flex;
   align-items: center;
@@ -159,82 +161,81 @@ nav a:hover {
 }
 
 .hero small {
-  color: #F2D49B;
-  letter-spacing: 4px;
+  color: var(--cor-destaque);
+  letter-spacing: 3px;
   text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 6vw, 76px);
-  font-weight: 500;
-  line-height: 1.1;
-  margin: 18px 0;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 14px 0;
+  color: var(--branco);
 }
 
 .hero p {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.7;
   max-width: 460px;
+  color: #f5edfa;
 }
 
-/* ---------- BOTÕES ---------- */
+/* ---------- BOTÕES ESTILO BOUTIQUE (Arredondados) ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 26px;
-  padding: 16px 32px;
-  background: var(--dourado);
-  color: var(--branco);
+  margin-top: 22px;
+  padding: 14px 28px;
+  background: var(--cor-destaque);
+  color: var(--cor-secundaria);
   text-decoration: none;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  border: 1px solid var(--dourado);
-  border-radius: 3px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 30px; /* Estilo pílula moderno */
+  box-shadow: 0 4px 12px rgba(192, 141, 229, 0.3);
 }
 
 .btn:hover {
-  background: var(--cafe);
-  border-color: var(--cafe);
+  background: var(--cor-secundaria);
+  color: var(--branco);
+  border-color: var(--cor-secundaria);
 }
 
 .btn.secondary {
   background: transparent;
-  color: var(--cafe);
-  border-color: var(--dourado);
+  color: var(--cor-secundaria);
+  border-color: var(--cor-secundaria);
+  box-shadow: none;
 }
 
 .btn.secondary:hover {
-  background: var(--dourado);
+  background: var(--cor-secundaria);
   color: var(--branco);
 }
 
-/* Ícone do Instagram */
 .btn .icon-instagram {
-  width: 22px;
-  height: 22px;
-  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
   vertical-align: middle;
-  transform: scale(1.35);
 }
 
-/* No botão claro (.secondary) o ícone assume a cor café... */
 .btn.secondary .icon-instagram {
-  filter: brightness(0) saturate(100%) invert(21%) sepia(28%) saturate(1850%) hue-rotate(343deg) brightness(93%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(20%) sepia(30%) saturate(1500%) hue-rotate(250deg) brightness(85%) contrast(90%);
 }
 
-/* ...e volta a ser branco quando o mouse passa por cima */
 .btn.secondary:hover .icon-instagram {
-  filter: none;
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
-/* Botões sociais padronizados */
 .social-actions {
   display: flex;
   flex-direction: column;
@@ -245,79 +246,78 @@ nav a:hover {
 .social-actions .btn,
 .newsletter-banner .btn {
   width: 100%;
-  max-width: 340px;
+  max-width: 320px;
   justify-content: center;
   text-align: center;
-  padding: 16px 20px;
-  font-size: 13px;
-  letter-spacing: 1.5px;
+  padding: 14px 20px;
+  font-size: 12px;
 }
 
-/* Botão do WhatsApp (vitrine e modal) */
+/* Botão do WhatsApp */
 .whatsapp-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 15px 18px;
-  background-color: var(--dourado);
-  color: var(--branco);
+  padding: 14px 20px;
+  background-color: var(--cor-destaque);
+  color: var(--cor-secundaria);
   text-decoration: none;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border-radius: 3px;
+  border-radius: 30px;
   gap: 10px;
-  white-space: nowrap; /* impede o texto de quebrar em duas linhas */
+  white-space: nowrap;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(192, 141, 229, 0.3);
 }
 
 .whatsapp-cta:hover {
-  background-color: var(--cafe);
+  background-color: var(--cor-secundaria);
+  color: var(--branco);
 }
 
 .whatsapp-cta .icon-whatsapp {
-  width: 22px;
-  height: 22px;
-  margin-right: 2px; /* a escala invade o espaço ao lado, então a margem diminui */
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
   object-fit: contain;
-  display: inline-block;
-  transform: scale(1.35); /* mesmo tamanho visual do ícone do Instagram */
 }
 
 /* ---------- SEÇÕES GERAIS ---------- */
 section {
-  padding: 85px 8%;
+  padding: 80px 8%;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
 .section-title span {
-  color: var(--dourado);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 4px;
+  color: var(--cor-secundaria);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .section-title h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  font-weight: 500;
-  color: var(--cafe);
-  margin-top: 10px;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-top: 8px;
 }
 
 .section-title p {
-  font-size: 15px;
-  margin-top: 12px;
-  line-height: 1.8;
-  color: var(--chumbo);
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 1.7;
+  color: var(--cor-secundaria);
+  opacity: 0.8;
 }
 
 /* ---------- FILTROS E BUSCA ---------- */
@@ -325,43 +325,39 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   gap: 20px;
   flex-wrap: wrap;
 }
 
 .search-box input {
   width: 280px;
-  padding: 13px 18px;
-  border: 1px solid var(--dourado-claro);
+  padding: 12px 18px;
+  border: 1px solid var(--borda-roxa);
   background: var(--branco);
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  border-radius: 3px;
+  font-size: 13px;
+  border-radius: 25px;
   outline: none;
-  color: var(--chumbo);
+  color: var(--cor-secundaria);
 }
 
 .search-box input:focus {
-  border-color: var(--dourado);
-}
-
-.filter-dropdown-wrap {
-  position: relative;
+  border-color: var(--cor-destaque);
 }
 
 .btn-filter-toggle {
   background: var(--branco);
-  border: 1px solid var(--dourado-claro);
-  padding: 13px 22px;
+  border: 1px solid var(--borda-roxa);
+  padding: 12px 22px;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--cafe);
-  border-radius: 3px;
+  color: var(--cor-secundaria);
+  border-radius: 25px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -369,8 +365,8 @@ section {
 }
 
 .btn-filter-toggle:hover {
-  border-color: var(--dourado);
-  background-color: var(--offwhite);
+  border-color: var(--cor-secundaria);
+  background-color: var(--cinza-claro);
 }
 
 .category-filters {
@@ -379,10 +375,10 @@ section {
   top: 115%;
   right: 0;
   background: var(--branco);
-  border: 1px solid var(--dourado-claro);
+  border: 1px solid var(--borda-roxa);
   padding: 15px;
-  border-radius: 3px;
-  box-shadow: 0 10px 25px rgba(101, 53, 31, .1);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(88, 39, 112, 0.12);
   z-index: 50;
   min-width: 200px;
   flex-direction: column;
@@ -398,62 +394,61 @@ section {
   text-align: left;
   background: var(--branco);
   border: 1px solid transparent;
-  padding: 10px 15px;
+  padding: 10px 14px;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--cafe);
-  border-radius: 3px;
+  color: var(--cor-secundaria);
+  border-radius: 6px;
   transition: all 0.2s;
 }
 
 .filter-chip:hover,
 .filter-chip.active {
-  background-color: var(--offwhite);
-  border-color: var(--dourado);
-  color: var(--cafe);
-  font-weight: 600;
+  background-color: var(--cinza-claro);
+  border-color: var(--cor-destaque);
+  color: var(--cor-secundaria);
 }
 
-/* ---------- GALERIA DE PRODUTOS ---------- */
+/* ---------- GALERIA DE PRODUTOS (Cards Modernos) ---------- */
 .products {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .empty-msg {
   grid-column: 1 / -1;
   text-align: center;
-  color: var(--chumbo);
+  color: var(--cor-secundaria);
   padding: 40px;
 }
 
 .product {
   background: var(--branco);
-  border: 1px solid var(--dourado-claro);
-  border-radius: 3px;
+  border: 1px solid var(--borda-roxa);
+  border-radius: 12px; /* Cantos arredondados modernos */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: .3s;
+  transition: .3s ease;
+  box-shadow: 0 4px 15px rgba(88, 39, 112, 0.04);
 }
 
 .product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(101, 53, 31, .08);
-  border-color: var(--dourado);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(88, 39, 112, 0.1);
+  border-color: var(--cor-destaque);
 }
 
-/* A foto é um <button>, para abrir também pelo teclado */
 .product-img-wrap {
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #FCFCFA;
+  background: var(--cinza-claro);
   border: 0;
   padding: 0;
   font: inherit;
@@ -470,11 +465,11 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(101, 53, 31, 0.85);
+  background: rgba(88, 39, 112, 0.85);
   color: white;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
   padding: 10px;
@@ -487,7 +482,6 @@ section {
   opacity: 1;
 }
 
-/* Escopo restrito à foto, para não afetar o ícone do WhatsApp */
 .product-img-wrap img {
   width: 100%;
   height: 100%;
@@ -497,35 +491,34 @@ section {
 }
 
 .product:hover .product-img-wrap img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .product-info {
-  padding: 32px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .product-category {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--dourado);
-  margin-bottom: 8px;
-  font-weight: 600;
+  color: var(--cor-destaque);
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .product h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--cafe);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--cor-secundaria);
 }
 
 .product h3:hover {
-  color: var(--dourado);
+  color: var(--cor-destaque);
 }
 
 .product-title-btn {
@@ -540,27 +533,28 @@ section {
 
 .product-tagline {
   font-style: italic;
-  font-size: 14px;
-  color: #5A5550;
-  margin-bottom: 15px;
+  font-size: 13px;
+  color: #786185;
+  margin-bottom: 12px;
 }
 
 .product p.product-desc {
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--chumbo);
-  margin-bottom: 25px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cor-secundaria);
+  opacity: 0.8;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
 
-/* ---------- MODAL DE RESUMO DA JOIA ---------- */
+/* ---------- MODAL ---------- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(42, 41, 40, 0.75);
+  background: rgba(88, 39, 112, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -578,13 +572,13 @@ section {
 .modal-box {
   background: var(--branco);
   width: 90%;
-  max-width: 800px;
-  border-radius: 3px;
+  max-width: 780px;
+  border-radius: 12px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   transform: translateY(20px);
   transition: transform 0.3s ease;
 }
@@ -596,8 +590,8 @@ section {
 .modal-img-wrap {
   width: 100%;
   height: 100%;
-  min-height: 360px;
-  background: #FCFCFA;
+  min-height: 340px;
+  background: var(--cinza-claro);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -611,7 +605,7 @@ section {
 }
 
 .modal-content {
-  padding: 40px 32px;
+  padding: 35px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -623,89 +617,89 @@ section {
   right: 20px;
   background: none;
   border: none;
-  font-size: 28px;
-  color: var(--cafe);
+  font-size: 26px;
+  color: var(--cor-secundaria);
   cursor: pointer;
   z-index: 10;
 }
 
 .modal-category {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--dourado);
+  color: var(--cor-destaque);
   margin-bottom: 6px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .modal-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  color: var(--cafe);
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-size: 26px;
+  color: var(--cor-secundaria);
+  margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .modal-tagline {
   font-style: italic;
-  font-size: 14px;
-  color: #5A5550;
-  margin-bottom: 15px;
+  font-size: 13px;
+  color: #786185;
+  margin-bottom: 12px;
 }
 
 .modal-desc {
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--chumbo);
-  margin-bottom: 25px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cor-secundaria);
+  opacity: 0.8;
+  margin-bottom: 20px;
 }
 
-/* ---------- SOBRE A VENDEDORA ---------- */
+/* ---------- SOBRE ---------- */
 .about {
-  background: var(--offwhite);
+  background: var(--branco);
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   align-items: center;
-  gap: 60px;
+  gap: 50px;
+  border-top: 1px solid var(--borda-roxa);
+  border-bottom: 1px solid var(--borda-roxa);
 }
 
 .about img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: 12px;
 }
 
 .about span {
-  color: var(--dourado);
+  color: var(--cor-destaque);
   letter-spacing: 3px;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .about h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  font-weight: 500;
-  margin: 15px 0 20px;
-  color: var(--cafe);
+  font-size: 38px;
+  font-weight: 700;
+  margin: 12px 0 16px;
+  color: var(--cor-secundaria);
 }
 
 .about p {
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--chumbo);
-  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--cor-secundaria);
+  opacity: 0.8;
+  margin-bottom: 22px;
 }
 
-/* ---------- CONFIABILIDADE E TRAJETÓRIA ---------- */
+/* ---------- CONFIABILIDADE ---------- */
 .trust-section {
-  background: var(--branco);
+  background: var(--cor-principal);
   text-align: center;
-  padding: 90px 8%;
-  border-top: 1px solid var(--dourado-claro);
-  border-bottom: 1px solid var(--dourado-claro);
+  padding: 80px 8%;
 }
 
 .trust-container {
@@ -715,98 +709,100 @@ section {
 
 .trust-container > span {
   display: block;
-  color: var(--dourado);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 4px;
+  color: var(--cor-secundaria);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  opacity: 0.8;
 }
 
 .trust-container h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  font-weight: 500;
-  color: var(--cafe);
-  margin-bottom: 20px;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-bottom: 16px;
 }
 
 .trust-container p {
-  font-size: 16px;
-  line-height: 2;
-  color: var(--chumbo);
-  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--cor-secundaria);
+  opacity: 0.85;
+  margin-bottom: 25px;
 }
 
 .trust-badges {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 35px;
 }
 
 .trust-badge-item {
   flex: 1;
   min-width: 240px;
-  background: var(--offwhite);
-  padding: 30px 20px;
-  border-radius: 3px;
-  border: 1px solid var(--dourado-claro);
+  background: var(--branco);
+  padding: 25px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--borda-roxa);
 }
 
 .trust-badge-item h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  color: var(--cafe);
-  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-bottom: 8px;
 }
 
 .trust-badge-item p {
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 0;
-  line-height: 1.6;
+  line-height: 1.5;
+  opacity: 0.75;
 }
 
 /* ---------- BANNER DE NOVIDADES ---------- */
 .newsletter-banner {
-  background: var(--offwhite);
-  border: 1px solid var(--dourado-claro);
+  background: var(--branco);
+  border: 1px solid var(--borda-roxa);
   text-align: center;
-  padding: 60px 24px;
-  margin: 80px 8% 40px 8%;
-  border-radius: 3px;
+  padding: 50px 24px;
+  margin: 70px 8% 30px 8%;
+  border-radius: 12px;
 }
 
 .newsletter-banner h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px;
-  font-weight: 500;
-  color: var(--cafe);
-  margin-bottom: 14px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-bottom: 12px;
 }
 
 .newsletter-banner p {
-  font-size: 15px;
-  color: var(--chumbo);
-  margin-bottom: 25px;
-  line-height: 1.8;
+  font-size: 14px;
+  color: var(--cor-secundaria);
+  opacity: 0.8;
+  margin-bottom: 20px;
+  line-height: 1.7;
 }
 
 /* ---------- RODAPÉ ---------- */
 footer {
-  background: var(--cafe);
+  background: var(--cor-secundaria);
   color: var(--branco);
   text-align: center;
-  padding: 45px 20px;
+  padding: 40px 20px;
   font-size: 12px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 footer .logo {
-  color: var(--dourado-claro);
-  font-size: 28px;
-  margin-bottom: 10px;
+  color: var(--cor-destaque);
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
 footer p {
@@ -816,50 +812,46 @@ footer p {
 
 footer .privacy-note {
   max-width: 680px;
-  margin: 16px auto 0;
-  font-size: 11px;
+  margin: 14px auto 0;
+  font-size: 10px;
   letter-spacing: 0.5px;
-  line-height: 1.6;
-  color: var(--dourado-claro);
-  opacity: 0.85;
+  line-height: 1.5;
+  color: var(--cor-destaque);
+  opacity: 0.8;
 }
 
 /* ---------- RESPONSIVIDADE ---------- */
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 190px; /* cabeçalho fica mais alto no celular */
+    scroll-padding-top: 170px;
   }
 
   header {
     flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-  }
-
-  .logo {
-    font-size: 30px;
+    gap: 12px;
+    padding: 16px;
   }
 
   nav {
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .hero {
-    min-height: 480px;
+    min-height: 440px;
   }
 
   .hero h1 {
-    font-size: 46px;
+    font-size: 38px;
   }
 
   section {
-    padding: 60px 6%;
+    padding: 50px 6%;
   }
 
   .section-title h2 {
-    font-size: 38px;
+    font-size: 30px;
   }
 
   .products {
@@ -868,7 +860,7 @@ footer .privacy-note {
 
   .about {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 30px;
   }
 
   .modal-box {
@@ -878,42 +870,10 @@ footer .privacy-note {
   }
 
   .modal-img-wrap {
-    min-height: 260px;
+    min-height: 240px;
   }
 
   .trust-badges {
     flex-direction: column;
-  }
-}
-
-/* Telas muito estreitas: o botão do WhatsApp (sem quebra de linha) precisa caber */
-@media (max-width: 400px) {
-  .whatsapp-cta {
-    padding: 15px 12px;
-    letter-spacing: 1px;
-  }
-
-  .product-info {
-    padding: 24px;
-  }
-}
-
-/* Respeita quem desativa animações no sistema */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .product,
-  .product-img-wrap img {
-    transition: none;
-  }
-
-  .product:hover {
-    transform: none;
-  }
-
-  .product:hover .product-img-wrap img {
-    transform: none;
   }
 }
