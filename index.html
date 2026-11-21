@@ -1,189 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#582770">
-
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
-
-<title>Aline Moda | Catálogo Exclusivo</title>
-<meta name="description" content="Catálogo exclusivo de roupas e tendências: peças selecionadas com cuidado e elegância. Consulte tamanhos e valores pelo WhatsApp.">
-
-<link rel="icon" type="image/png" href="image/logo.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça nossa coleção de roupas e acompanhe as novidades nas redes sociais.">
+  <title>Violeta | Catálogo de Moda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <div class="announcement">ESTILO, PERSONALIDADE E CONFORTO — DESCUBRA A COLEÇÃO</div>
 
-<!-- CABEÇALHO -->
-<header>
-  <div class="logo-wrap">
-    <span class="brand-tag">Moda & Estilo Exclusivo</span>
-    <div class="logo">ALINE MODA</div>
-  </div>
-
-  <nav aria-label="Principal">
-    <a href="#inicio">Início</a>
-    <a href="#colecao">Coleção</a>
-    <a href="#sobre">Aline Borges</a>
-  </nav>
-</header>
-
-<!-- BARRA DE BENEFÍCIOS -->
-<div class="benefits-bar">
-  <div class="benefits-container">
-    <div class="benefits-set">
-      <span>✦ Tendências Exclusivas</span>
-      <span>✦ Caimento Perfeito e Conforto</span>
-      <span>✦ Atendimento Personalizado</span>
-    </div>
-    <div class="benefits-set" aria-hidden="true">
-      <span>✦ Tendências Exclusivas</span>
-      <span>✦ Caimento Perfeito e Conforto</span>
-      <span>✦ Atendimento Personalizado</span>
-    </div>
-    <div class="benefits-set" aria-hidden="true">
-      <span>✦ Tendências Exclusivas</span>
-      <span>✦ Caimento Perfeito e Conforto</span>
-      <span>✦ Atendimento Personalizado</span>
-    </div>
-    <div class="benefits-set" aria-hidden="true">
-      <span>✦ Tendências Exclusivas</span>
-      <span>✦ Caimento Perfeito e Conforto</span>
-      <span>✦ Atendimento Personalizado</span>
-    </div>
-  </div>
-</div>
-
-<main>
-
-  <!-- CAPA -->
-  <section class="hero" id="inicio">
-    <div class="hero-content">
-      <small>Elegância em cada costura</small>
-      <h1>Vista sua melhor versão.</h1>
-      <p>
-        Descubra coleções pensadas para realçar sua autenticidade, unindo
-        conforto, sofisticação e as principais tendências da moda.
-      </p>
-      <a href="#colecao" class="btn">Conheça o Catálogo</a>
-    </div>
-  </section>
-
-  <!-- COLEÇÃO DE ROUPAS COM BUSCA E FILTROS -->
-  <section id="colecao">
-    <div class="section-title">
-      <span>Novas Coleções</span>
-      <h2>Peças em Destaque</h2>
-      <p>Toque na foto ou no nome de uma peça para ver os detalhes, tamanhos disponíveis e consultar no WhatsApp.</p>
-    </div>
-
-    <div class="filter-bar">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Pesquisar peça..." maxlength="60" aria-label="Pesquisar peça">
+  <header>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="brand" href="#inicio">violeta<span>.</span></a>
+      <div class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Redes sociais</a>
       </div>
+      <a class="nav-cta" href="#catalogo">VER COLEÇÃO</a>
+    </nav>
+  </header>
 
-      <div class="filter-dropdown-wrap">
-        <button type="button" class="btn-filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="categoryFilters">
-          Filtrar Categorias <span id="filterArrow" aria-hidden="true">▾</span>
-        </button>
-        <div class="category-filters" id="categoryFilters"></div>
-      </div>
-    </div>
-
-    <div class="products" id="productsGrid"></div>
-  </section>
-
-  <!-- MODAL DE RESUMO DA PEÇA -->
-  <div class="modal-overlay" id="productModal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button type="button" class="modal-close" id="modalClose" aria-label="Fechar janela">&times;</button>
-      <div class="modal-img-wrap">
-        <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
-      </div>
-      <div class="modal-content">
-        <span class="modal-category" id="modalCategory"></span>
-        <h3 class="modal-title" id="modalTitle"></h3>
-        <p class="modal-tagline" id="modalTagline"></p>
-        <p class="modal-desc" id="modalDesc"></p>
-        <a id="modalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-cta">
-          <img src="image/whatsapp.png" alt="" class="icon-whatsapp"> Consultar Tamanhos no WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- SOBRE A VENDEDORA -->
-  <section class="about" id="sobre">
-    <img
-      src="image/vendedora.png"
-      alt="Aline Borges, criadora da marca"
-      data-fallback="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900"
-      loading="lazy"
-    >
-    <div>
-      <span>Moda com Propósito</span>
-      <h2>Olá, sou a Aline Borges</h2>
-      <p>
-        Acredito que a roupa certa tem o poder de transformar como nos sentimos. Cada peça do nosso catálogo é escolhida a dedo para trazer versatilidade, elegância e muito estilo para o seu dia a dia.
-        <br><br>
-        Será um prazer ajudar você a montar produções incríveis!
-      </p>
-      <div class="social-actions">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn secondary">
-          <img src="image/instagram.png" alt="" class="icon-instagram"> Instagram Pessoal
-        </a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn">
-          <img src="image/instagram.png" alt="" class="icon-instagram"> Instagram da Loja
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONFIABILIDADE E TRAJETÓRIA -->
-  <section class="trust-section">
-    <div class="trust-container">
-      <span>Compromisso e Qualidade</span>
-      <h2>Excelência em Cada Detalhe</h2>
-      <p>
-        Trabalhamos com tecidos selecionados e um rigoroso padrão de acabamento para garantir que cada look ofereça durabilidade, caimento impecável e muito conforto.
-      </p>
-      <div class="trust-badges">
-        <div class="trust-badge-item">
-          <h4>Tecidos Selecionados</h4>
-          <p>Toque suave, alta durabilidade e caimento perfeito no corpo.</p>
+  <main>
+    <section class="hero" id="inicio">
+      <div>
+        <div class="eyebrow">Nova coleção • 2026</div>
+        <h1>Vista o que<br>faz você ser<br><em>única.</em></h1>
+        <p class="hero-copy">Peças escolhidas com carinho para acompanhar seu estilo em todos os momentos. Encontre seus novos favoritos na nossa coleção.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="#catalogo">Explorar catálogo</a>
+          <a class="button-outline" href="#contato">Fale com a gente</a>
         </div>
-        <div class="trust-badge-item">
-          <h4>Atendimento Consultivo</h4>
-          <p>Auxílio completo na escolha de tamanhos, numerações e combinações.</p>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=85" alt="Duas mulheres usando looks de moda em uma rua">
+        <div class="hero-note">Seu estilo, suas escolhas.</div>
+      </div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="section-heading">
+        <div class="eyebrow">Escolha seus favoritos</div>
+        <h2>Nosso catálogo</h2>
+        <p>Uma seleção especial para renovar seu guarda-roupa.</p>
+      </div>
+
+      <!-- Os botões de filtro e os produtos serão gerados automaticamente pelo script.js -->
+      <div class="filters" id="categoryFilters" aria-label="Filtrar produtos"></div>
+      <div class="products" id="productsGrid"></div>
+    </section>
+
+    <!-- MODAL DE DETALHES DA PEÇA -->
+    <div class="modal-overlay" id="productModal">
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Fechar">&times;</button>
+        <div class="modal-img-wrap">
+          <img id="modalImg" src="" alt="">
+        </div>
+        <div class="modal-content">
+          <span class="modal-category" id="modalCategory"></span>
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <p class="modal-tagline" id="modalTagline"></p>
+          <p class="modal-desc" id="modalDesc"></p>
+          <a id="modalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-cta">
+            Consultar no WhatsApp
+          </a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- BANNER DE NOVIDADES -->
-  <div class="newsletter-banner">
-    <h3>Quer receber as novidades e lançamentos em primeira mão?</h3>
-    <p>Fique por dentro das coleções limitadas e reposições de estoque pelo nosso Instagram.</p>
-    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="btn">
-      <img src="image/instagram.png" alt="" class="icon-instagram"> Seguir no Instagram
-    </a>
-  </div>
-</main> 
+    <section class="about" id="sobre">
+      <div class="about-inner">
+        <div class="eyebrow">Um pouco sobre nós</div>
+        <h2>Moda que combina com você.</h2>
+        <p>Acreditamos que se vestir é uma forma de expressar quem somos. Por isso, selecionamos peças que unem beleza, conforto e personalidade. Explore o catálogo e fale com a gente para saber mais sobre tamanhos, disponibilidade e novidades.</p>
+      </div>
+    </section>
 
-<!-- RODAPÉ -->
-<footer>
-  <div class="logo">ALINE MODA</div>
-  <p>© <span id="ano">2026</span> Aline Moda · Feito com cuidado e exclusividade.</p>
-  <p class="privacy-note">
-    Privacidade &amp; Segurança (LGPD): este catálogo digital não coleta dados pessoais, não armazena informações financeiras e não utiliza cookies de rastreamento próprios. Todo atendimento é realizado diretamente pelos canais oficiais verificados.
-  </p>
-</footer>
+    <section class="social" id="contato">
+      <div class="eyebrow">Vamos nos conectar?</div>
+      <h2>Acompanhe nossas novidades</h2>
+      <p>Confira lançamentos, inspirações e entre em contato pelas nossas redes.</p>
+      <div class="social-links">
+        <a class="social-link" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          Instagram
+        </a>
+        <a class="social-link" href="https://wa.me/5549991023413" target="_blank" rel="noopener noreferrer">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.5 2 2 3.5 4 4l1-1 2 1c-.2 1.2-1.2 2-2.4 2-3.2-.5-5.6-2.9-6.1-6.1 0-1.2.8-2.2 2-2.4l1 2-1 1.5"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="footer-brand">violeta.</div>
+    <p>© <span id="ano">2026</span> Violeta — Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>

@@ -1,62 +1,63 @@
 'use strict';
 
 /* ==========================================================
-   ALINE JOIAS · Catálogo
+   VIOLETA · Catálogo Dinâmico de Moda com Modal
    ========================================================== */
 
 /* ---------- CONFIGURAÇÕES ---------- */
 const WHATSAPP_NUMBER = '5549991023413';
-const FALLBACK_PRODUCT_IMG = 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700';
+const FALLBACK_PRODUCT_IMG = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=85';
 
-/* ---------- CATÁLOGO ----------
-   Para esconder uma joia sem apagá-la: ativo: false
-   A mensagem do WhatsApp é gerada sozinha a partir do nome.
-   Se quiser uma mensagem diferente, acrescente whatsappText: '...' na joia. */
+/* ---------- CATÁLOGO DE PRODUTOS ---------- */
 const products = [
   {
     id: '1',
     ativo: true,
-    name: 'Conjunto Coração',
-    category: 'Conjuntos',
-    tagline: 'A intensidade e o brilho combinados com a delicadeza do afeto.',
-    desc: 'Ponto de luz central cercado por corações cravejados com acabamento impecável. Perfeito para marcar ocasiões especiais com muito charme.',
-    image: 'image/conjuntocoracao.png'
+    tag: 'Destaque',
+    name: 'Vestido Aurora',
+    category: 'Feminino',
+    tagline: 'Leveza e elegância em cada detalhe.',
+    desc: 'Vestido com caimento fluido, tecido de alta qualidade e toque suave. Perfeito para ocasiões especiais ou passeios sofisticados.',
+    price: 'R$ 129,90',
+    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=85'
   },
   {
     id: '2',
     ativo: true,
-    name: 'Colar Brilhante',
-    category: 'Colares',
-    tagline: 'Formas fluidas e sofisticadas para o dia a dia.',
+    tag: '',
+    name: 'Camiseta Essencial',
+    category: 'Masculino',
+    tagline: 'Conforto e versatilidade.',
     desc: 'Design texturizado e marcante que une imponência contemporânea e leveza para o seu visual cotidiano.',
-    image: 'image/colarbrilhante.png'
+    price: 'R$ 69,90',
+    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=700&q=85'
   },
   {
     id: '3',
     ativo: true,
-    name: 'Diamante Coração',
-    category: 'Colares',
-    tagline: 'Um símbolo clássico reimaginado com brilho intenso.',
-    desc: 'Pingente sofisticado com harmonia perfeita entre o metal nobre e zircônias de alto padrão.',
-    image: 'image/diamentecoracao.png'
+    tag: 'Novo',
+    name: 'Calça Clássica',
+    category: 'Feminino',
+    tagline: 'Um toque elegante no dia a dia.',
+    desc: 'Calça de alfaiataria moderna, ideal para compor looks elegantes tanto para o trabalho quanto para eventos sociais.',
+    price: 'R$ 119,90',
+    image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=700&q=85'
   },
   {
     id: '4',
     ativo: true,
-    name: 'Pulseira Elegance',
-    category: 'Pulseiras',
-    tagline: 'Elegância inspirada pelas linhas e detalhes sofisticados.',
-    desc: 'Peça delicada e moderna para valorizar o seu pulso com extrema sofisticação em qualquer ocasião.',
-    image: 'image/pulseira.png'
+    tag: '',
+    name: 'Colar Delicado',
+    category: 'Acessórios',
+    tagline: 'O detalhe que transforma o look.',
+    desc: 'Peça delicada e moderna para valorizar o seu visual com extrema sofisticação em qualquer ocasião.',
+    price: 'R$ 49,90',
+    image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85'
   }
 ];
 
 /* ---------- ELEMENTOS DA PÁGINA ---------- */
 const grid = document.getElementById('productsGrid');
-const searchInput = document.getElementById('searchInput');
-const filterWrap = document.querySelector('.filter-dropdown-wrap');
-const filterToggle = document.getElementById('filterToggle');
-const filterArrow = document.getElementById('filterArrow');
 const filtersContainer = document.getElementById('categoryFilters');
 
 const modal = document.getElementById('productModal');
@@ -68,7 +69,7 @@ const modalDesc = document.getElementById('modalDesc');
 const modalWhatsapp = document.getElementById('modalWhatsappBtn');
 const modalClose = document.getElementById('modalClose');
 
-let activeCategory = 'Todas';
+let activeCategory = 'Todos';
 let ultimoFoco = null;
 
 /* ---------- FUNÇÕES AUXILIARES ---------- */
@@ -81,89 +82,67 @@ function escapeHTML(texto) {
     .replace(/'/g, '&#39;');
 }
 
-// Busca sem diferenciar maiúsculas nem acentos ("cólar" encontra "colar")
-function normalizar(texto) {
-  return String(texto)
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-}
-
 function mensagemWhatsApp(p) {
-  return p.whatsappText ||
-    `Olá! Gostaria de consultar a disponibilidade e valores da peça “${p.name}”.`;
+  return p.whatsappText || `Olá! Gostaria de consultar a disponibilidade e valores da peça “${p.name}” (${p.price}).`;
 }
 
 function linkWhatsApp(p) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagemWhatsApp(p))}`;
 }
 
-/* ---------- RENDERIZAÇÃO ---------- */
+/* ---------- RENDERIZAÇÃO DOS FILTROS ---------- */
 function renderFiltros() {
   const ativos = products.filter(p => p.ativo !== false);
-  const categorias = ['Todas', ...new Set(ativos.map(p => p.category))];
+  const categorias = ['Todos', ...new Set(ativos.map(p => p.category))];
 
-  // Se a categoria escolhida deixou de existir (joia desativada), volta para "Todas"
-  if (!categorias.includes(activeCategory)) activeCategory = 'Todas';
+  if (!categorias.includes(activeCategory)) activeCategory = 'Todos';
 
   filtersContainer.innerHTML = categorias.map(cat => `
-    <button type="button" class="filter-chip ${cat === activeCategory ? 'active' : ''}"
-            data-category="${escapeHTML(cat)}" aria-pressed="${cat === activeCategory}">
+    <button type="button" class="filter ${cat === activeCategory ? 'active' : ''}" data-category="${escapeHTML(cat)}">
       ${escapeHTML(cat)}
     </button>
   `).join('');
 }
 
+/* ---------- RENDERIZAÇÃO DOS PRODUTOS ---------- */
 function cardHTML(p) {
   const id = escapeHTML(p.id);
   const nome = escapeHTML(p.name);
+  const tagHTML = p.tag ? `<span class="tag">${escapeHTML(p.tag)}</span>` : '';
 
   return `
     <article class="product">
-      <button type="button" class="product-img-wrap" data-open-modal="${id}" aria-label="Ver detalhes de ${nome}">
-        <img src="${escapeHTML(p.image)}" alt="" loading="lazy" decoding="async"
-             data-fallback="${FALLBACK_PRODUCT_IMG}">
+      <button type="button" class="product-img-wrap" data-open-modal="${id}" aria-label="Ver detalhes de ${nome}" style="background:none; border:none; padding:0; width:100%; cursor:pointer;">
+        <div class="product-photo">
+          <img src="${escapeHTML(p.image)}" alt="${nome}" loading="lazy" data-fallback="${FALLBACK_PRODUCT_IMG}">
+          ${tagHTML}
+        </div>
       </button>
       <div class="product-info">
-        <span class="product-category">${escapeHTML(p.category)}</span>
-        <h3><button type="button" class="product-title-btn" data-open-modal="${id}">${nome}</button></h3>
-        <p class="product-tagline">“${escapeHTML(p.tagline)}”</p>
-        <p class="product-desc">${escapeHTML(p.desc)}</p>
-        <a href="${linkWhatsApp(p)}" target="_blank" rel="noopener noreferrer" class="whatsapp-cta">
-          <img src="image/whatsapp.png" alt="" class="icon-whatsapp"> Consultar no WhatsApp
-        </a>
+        <h3>
+          <button type="button" class="product-title-btn" data-open-modal="${id}" style="background:none; border:none; padding:0; font:inherit; color:var(--purple); cursor:pointer; font-weight:700; text-align:left;">
+            ${nome}
+          </button>
+        </h3>
+        <p>${escapeHTML(p.desc)}</p>
+        <div class="product-bottom">
+          <span class="price">${escapeHTML(p.price)}</span>
+          <a class="ask-link" href="${linkWhatsApp(p)}" target="_blank" rel="noopener noreferrer">Consultar</a>
+        </div>
       </div>
     </article>
   `;
 }
 
 function renderProdutos() {
-  const busca = normalizar(searchInput.value.trim());
-
   const filtrados = products.filter(p => {
     if (p.ativo === false) return false;
-    const daCategoria = activeCategory === 'Todas' || p.category === activeCategory;
-    const naBusca = normalizar(p.name).includes(busca) || normalizar(p.desc).includes(busca);
-    return daCategoria && naBusca;
+    return activeCategory === 'Todos' || p.category === activeCategory;
   });
 
   grid.innerHTML = filtrados.length
     ? filtrados.map(cardHTML).join('')
-    : '<p class="empty-msg">Nenhuma joia encontrada.</p>';
-}
-
-/* ---------- MENU DE FILTROS ---------- */
-function setMenuFiltros(aberto) {
-  filtersContainer.classList.toggle('active', aberto);
-  filterToggle.setAttribute('aria-expanded', String(aberto));
-  filterArrow.textContent = aberto ? '▴' : '▾';
-}
-
-function setCategory(cat) {
-  activeCategory = cat;
-  renderFiltros();
-  renderProdutos();
-  setMenuFiltros(false); // fecha o menu depois de escolher (útil no celular)
+    : '<p class="empty-msg">Nenhuma peça encontrada nesta categoria.</p>';
 }
 
 /* ---------- MODAL ---------- */
@@ -173,18 +152,17 @@ function abrirModal(id, opener) {
 
   ultimoFoco = opener || null;
 
-  modalImg.dataset.fallback = FALLBACK_PRODUCT_IMG;
   modalImg.src = produto.image;
   modalImg.alt = produto.name;
   modalCategory.textContent = produto.category;
   modalTitle.textContent = produto.name;
-  modalTagline.textContent = `“${produto.tagline}”`;
+  modalTagline.textContent = produto.tagline ? `“${produto.tagline}”` : '';
   modalDesc.textContent = produto.desc;
   modalWhatsapp.href = linkWhatsApp(produto);
 
   modal.classList.add('active');
   document.body.classList.add('no-scroll');
-  modalClose.focus();
+  if (modalClose) modalClose.focus();
 }
 
 function fecharModal() {
@@ -194,29 +172,13 @@ function fecharModal() {
   ultimoFoco = null;
 }
 
-/* ---------- IMAGEM RESERVA (sem handlers inline, compatível com a CSP) ---------- */
-function trocarPorFallback(img) {
-  const reserva = img.dataset.fallback;
-  if (!reserva) return;
-  delete img.dataset.fallback; // evita laço infinito se a reserva também falhar
-  img.src = reserva;
-}
-
-// O evento "error" não borbulha, por isso usamos a fase de captura
-document.addEventListener('error', e => {
-  if (e.target instanceof HTMLImageElement) trocarPorFallback(e.target);
-}, true);
-
 /* ---------- EVENTOS ---------- */
-searchInput.addEventListener('input', renderProdutos);
-
-filterToggle.addEventListener('click', () => {
-  setMenuFiltros(!filtersContainer.classList.contains('active'));
-});
-
 filtersContainer.addEventListener('click', e => {
-  const chip = e.target.closest('.filter-chip');
-  if (chip) setCategory(chip.dataset.category);
+  const btn = e.target.closest('.filter');
+  if (!btn) return;
+  activeCategory = btn.dataset.category;
+  renderFiltros();
+  renderProdutos();
 });
 
 grid.addEventListener('click', e => {
@@ -224,35 +186,30 @@ grid.addEventListener('click', e => {
   if (gatilho) abrirModal(gatilho.dataset.openModal, gatilho);
 });
 
-modalClose.addEventListener('click', fecharModal);
+if (modalClose) modalClose.addEventListener('click', fecharModal);
 
 modal.addEventListener('click', e => {
-  if (e.target === modal) fecharModal(); // clique fora da caixa
+  if (e.target === modal) fecharModal();
 });
 
-// Clique fora do menu de filtros fecha o menu
-document.addEventListener('click', e => {
-  if (!filterWrap.contains(e.target)) setMenuFiltros(false);
-});
-
-// Tecla Esc fecha o modal (ou, se ele estiver fechado, o menu de filtros)
 document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-  if (modal.classList.contains('active')) {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
     fecharModal();
-  } else {
-    setMenuFiltros(false);
   }
 });
+
+/* ---------- IMAGEM RESERVA ---------- */
+document.addEventListener('error', e => {
+  if (e.target instanceof HTMLImageElement && e.target.dataset.fallback) {
+    const reserva = e.target.dataset.fallback;
+    delete e.target.dataset.fallback;
+    e.target.src = reserva;
+  }
+}, true);
 
 /* ---------- INICIALIZAÇÃO ---------- */
 renderFiltros();
 renderProdutos();
-
-// Imagens estáticas que já falharam antes de o script rodar (ex.: foto da vendedora)
-document.querySelectorAll('img[data-fallback]').forEach(img => {
-  if (img.complete && img.naturalWidth === 0) trocarPorFallback(img);
-});
 
 const anoEl = document.getElementById('ano');
 if (anoEl) anoEl.textContent = new Date().getFullYear();
